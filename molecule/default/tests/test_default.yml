@@ -2,7 +2,7 @@
 service:
   kubelet:
     enabled: true
-    running: true
+    running: false
   docker:
     enabled: true
-    running: true
+    running: false

@@ -16,13 +16,9 @@
     repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
     state: present
 
-- name: Refresh package cache
-  apt:
-    update_cache: yes
-
 - name: Install Kubernetes binaries
   apt:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
   with_items:
     - docker.io
@@ -30,4 +26,3 @@
     - kubeadm
     - kubernetes-cni
     - kubectl
-
