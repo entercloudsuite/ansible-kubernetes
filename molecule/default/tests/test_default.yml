@@ -1,0 +1,8 @@
+---
+service:
+  kubelet:
+    enabled: true
+    running: true
+  docker:
+    enabled: true
+    running: true

@@ -1,0 +1,33 @@
+---
+# tasks file for Kubernetes
+
+- name: Install apt-transport-https
+  apt:
+    name: apt-transport-https
+    state: present
+
+- name: Import GPG key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+    state: present
+
+- name: Insert Kubernetes repository
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+
+- name: Refresh package cache
+  apt:
+    update_cache: yes
+
+- name: Install Kubernetes binaries
+  apt:
+    name: {{ item }}
+    state: present
+  with_items:
+    - docker.io
+    - kubelet
+    - kubeadm
+    - kubernetes-cni
+    - kubectl
+
