@@ -27,7 +27,7 @@
         }
     ],
     "variables": {
-        "image_name": "ecs-kubernetes",
+        "image_name": "ecs-kubernetes {{env `TRAVIS_BRANCH`}}",
         "ecs_flavor":  "e3standard.x1",
         "ecs_region":  "nl-ams1",
         "ecs_tenant":  "{{env `OS_TENANT`}}",
