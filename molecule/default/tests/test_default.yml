@@ -1,8 +1,5 @@
 ---
 service:
-  kubelet:
-    enabled: true
-    running: false
   docker:
     enabled: true
     running: false

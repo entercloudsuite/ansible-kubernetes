@@ -1,2 +1,11 @@
 ---
 # handlers file for Kubernetes
+
+- name: Cleanup apt
+  command: "apt clean"
+
+- name: Cleanup etcd download directory
+  file:
+    path: "/tmp/etcd-v{{ etcd_version }}-linux-amd64"
+    state: absent
+  when: not etcd_check.stat.exists

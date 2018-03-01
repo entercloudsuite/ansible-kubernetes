@@ -1,2 +1,5 @@
 ---
 # defaults file for Kubernetes
+
+kubernetes_version: "1.9.3"
+etcd_version: "3.3.1"

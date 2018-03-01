@@ -1,28 +1,85 @@
 ---
 # tasks file for Kubernetes
 
-- name: Install apt-transport-https
-  apt:
-    name: apt-transport-https
-    state: present
-
-- name: Import GPG key
-  apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    state: present
-
-- name: Insert Kubernetes repository
-  apt_repository:
-    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
-    state: present
-
-- name: Install Kubernetes binaries
+- name: Install prerequisites
   apt:
     name: "{{ item }}"
     state: present
   with_items:
-    - docker.io
-    - kubelet
-    - kubeadm
-    - kubernetes-cni
+    - "apt-transport-https"
+    - "ca-certificates"
+    - "curl"
+    - "software-properties-common"
+
+- name: Check for Docker daemon binary
+  stat:
+    path: /usr/bin/dockerd
+  register: docker_check
+
+- name: Import Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+  when: not docker_check.stat.exists
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu xenial stable
+    state: present
+  when: not docker_check.stat.exists
+
+- name: Install Docker CE v17.03.2
+  apt:
+    name: "docker-ce=17.03.2~ce-0~ubuntu-xenial"
+    state: present
+  notify:
+    - Cleanup apt
+  when: not docker_check.stat.exists
+
+- name: Ensure that Docker is stopped
+  service:
+    name: docker
+    state: stopped
+  when: not docker_check.stat.exists
+
+- name: Remove Docker node keys
+  file:
+    path: /etc/docker/key.json
+    state: absent
+  when: not docker_check.stat.exists
+
+- name: "Download and install Kubernetes v{{ kubernetes_version }} binaries"
+  get_url:
+    url: "https://storage.googleapis.com/kubernetes-release/release/v{{ kubernetes_version }}/bin/linux/amd64/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    mode: 0755
+  with_items:
     - kubectl
+    - kube-apiserver
+    - kube-controller-manager
+    - kube-scheduler
+    - kube-proxy
+    - kubelet
+
+- name: Check for etcd binary
+  stat:
+    path: /usr/local/bin/etcd
+  register: etcd_check
+
+- name: "Download and unpack etcd v{{ etcd_version }}"
+  unarchive:
+    src: "https://github.com/coreos/etcd/releases/download/v{{ etcd_version }}/etcd-v{{ etcd_version }}-linux-amd64.tar.gz"
+    dest: /tmp
+    remote_src: yes
+  when: not etcd_check.stat.exists
+
+- name: Install etcd binaries
+  copy:
+    src: "/tmp/etcd-v{{ etcd_version }}-linux-amd64/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    remote_src: yes
+    mode: 0755
+  with_items:
+    - etcd
+    - etcdctl
+  when: not etcd_check.stat.exists
