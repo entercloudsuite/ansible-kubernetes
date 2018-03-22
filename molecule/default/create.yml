@@ -16,8 +16,9 @@
           - SYS_ADMIN
         volumes:
           - /sys/fs/cgroup:/sys/fs/cgroup:ro
-          - tmpfs:/run
-          - tmpfs:/run/lock
+        tmpfs:
+          - /run
+          - /run/lock
         state: started
         recreate: no
         log_driver: syslog
