@@ -1,2 +1,5 @@
 ---
 # handlers file for Kubernetes
+
+- name: Clean APT cache
+  command: "apt clean"
