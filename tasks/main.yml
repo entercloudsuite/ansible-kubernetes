@@ -25,7 +25,7 @@
   apt:
     name: docker-ce=17.03.2~ce-0~ubuntu-xenial
     state: present
-    
+
 - name: Hold Docker CE version
   dpkg_selections:
     name: docker-ce

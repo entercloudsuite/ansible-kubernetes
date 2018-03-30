@@ -4,3 +4,4 @@
   hosts: all
   roles:
     - { role: ansible-kubernetes }
+    - { role: entercloudsuite.prometheus-node-exporter }
