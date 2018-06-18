@@ -1,4 +1,4 @@
 ---
 # defaults file for Kubernetes
 
-kubernetes_version: "1.10.1"
+kubernetes_version: "1.10.4"
