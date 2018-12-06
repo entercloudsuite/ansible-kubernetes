@@ -2,6 +2,7 @@
 - hosts: localhost
   connection: local
   gather_facts: no
+
   vars:
     molecule_file: "{{ lookup('env','MOLECULE_FILE') }}"
     molecule_scenario_directory: "{{ lookup('env','MOLECULE_SCENARIO_DIRECTORY') }}"
@@ -12,6 +13,7 @@
         name: "{{ item.name }}"
         hostname: "{{ item.name }}"
         image: solita/ubuntu-systemd:latest
+        command: /sbin/init
         capabilities:
           - SYS_ADMIN
         volumes:
@@ -21,5 +23,5 @@
           - /run/lock
         state: started
         recreate: no
-        log_driver: syslog
+        log_driver: none
       with_items: "{{ molecule_yml.platforms }}"
