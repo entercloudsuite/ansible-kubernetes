@@ -3,6 +3,9 @@
 - name: run the main role
   hosts: all
   pre_tasks:
+    - name: Add Glusterfs repository
+      apt_repository:
+        repo: "{{ gluster_ppa_repo }}"
     - name: update repositories cache
       apt:
         update_cache: yes
@@ -24,6 +27,13 @@
         - bzip2
         - gzip
         - git
+        - glusterfs-client
+    - name: Add module dm_thin_pool for thin volumes provisioning
+      lineinfile:
+        path: /etc/modules
+        state: present
+        create: yes
+        line: 'dm_thin_pool'
   roles:
     - role: ansible-kubernetes
     - role: entercloudsuite.prometheus-exporter
