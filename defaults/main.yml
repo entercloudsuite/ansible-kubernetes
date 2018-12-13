@@ -1,5 +1,5 @@
 ---
 # defaults file for Kubernetes
-kubernetes_version: "1.13.0"
+kubernetes_version: "1.10.5"
 glusterfs_ppa_version: 4.0
 gluster_ppa_repo: "ppa:gluster/glusterfs-{{ glusterfs_ppa_version }}"
