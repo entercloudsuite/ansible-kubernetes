@@ -1,18 +1,18 @@
-Ansible Role: Kubernetes 
+Ansible Role: kubernetes 
 ======================================
 
 [![Build Status](https://travis-ci.org/entercloudsuite/ansible-kubernetes.svg?branch=master)](https://travis-ci.org/entercloudsuite/ansible-kubernetes)
 [![Galaxy](https://img.shields.io/badge/galaxy-entercloudsuite.kubernetes-blue.svg?style=flat-square)](https://galaxy.ansible.com/entercloudsuite/kubernetes)  
 
-Installs Kubernetes on Ubuntu 16.04 (Xenial)
+Installs kubernetes on Ubuntu 16.04 (Xenial)
 
 ## Requirements
 
-This role requires Ansible 2.2 or higher.
+This role requires Ansible 2.6.2 or higher.
 
 ## Role Variables
 
-The role defines most of its variables in `defaults/main.yml`.
+The role defines most of its variables in `defaults/main.yml`:
 
 ## Example Playbook
 
