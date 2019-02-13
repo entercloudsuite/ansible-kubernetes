@@ -34,7 +34,7 @@
     }
   ],
   "variables": {
-    "image_name": "ecs-kubernetes {{env `TRAVIS_BRANCH`}}",
+    "image_name": "ecs-kubernetes-{{env `TRAVIS_BRANCH`}}-{{env `TRAVIS_BUILD_NUMBER`}}",
     "instance_name": "ecs-kubernetes",
         "ecs_flavor":  "e3standard.x4",
     "ecs_region":  "nl-ams1",
