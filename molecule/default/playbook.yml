@@ -40,7 +40,7 @@
       prometheus_exporter_name: node_exporter
       prometheus_exporter_version: 0.16.0
     - role: entercloudsuite.consul
-      consul_version: 1.2.3
+      consul_version: 1.4.3
       consul_packer_provision: true
       consul_configs:
         main:
