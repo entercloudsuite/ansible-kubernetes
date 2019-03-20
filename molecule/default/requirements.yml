@@ -1,5 +1,3 @@
 ---
-- src: entercloudsuite.prometheus-exporter
-  version: 1.0.4
 - src: entercloudsuite.consul
   version: 1.0.1
