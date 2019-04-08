@@ -36,7 +36,7 @@
   roles:
     - role: ansible-kubernetes
     - role: entercloudsuite.consul
-      consul_version: 1.4.3
+      consul_version: 1.4.4
       consul_packer_provision: true
       consul_configs:
         main:
