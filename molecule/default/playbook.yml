@@ -16,7 +16,6 @@
       with_items:
         - curl
         - jq
-        - iproute
         - rsyslog
         - ca-certificates
         - sudo
