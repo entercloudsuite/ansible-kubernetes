@@ -9,7 +9,7 @@
       "region": "{{user `ecs_region`}}",
       "image_name": "{{user `image_name`}}",
       "instance_name": "{{user `instance_name`}}",
-      "source_image": "6a1e4c2b-d663-492a-a828-205f4b28d9e0",
+      "source_image": "6d5e88b5-58f6-40ba-b6c3-8c32ce6b9af2",
       "ssh_username": "ubuntu",
       "flavor": "{{user `ecs_flavor`}}",
       "networks": [ "{{user `ecs_network`}}" ],
