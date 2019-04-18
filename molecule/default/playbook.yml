@@ -141,7 +141,7 @@
           - src: "https://github.com/{{ repository }}"
             version: "{{ commit }}"
           - src: entercloudsuite.consul
-            version: 1.0.1
+            version: 1.0.2
         dest: "{{ script_path }}/requirements.yml"
         remote_src: yes
     - name: install python requirements
